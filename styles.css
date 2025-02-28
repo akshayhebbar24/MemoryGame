@@ -1,0 +1,90 @@
+@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.card {
+  width: 120px;
+  height: 120px;
+  background-color: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  transform: scale(1.1);
+  background-color: #ccc;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card.flipped {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.controls {
+  background-color: #28a745;
+  color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.controls .form-group {
+  margin-bottom: 20px;
+}
+
+.controls p {
+  margin: 0;
+}
+
+.controls label {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.controls select, .controls .form-check-label {
+  font-size: 1.5em;
+}
+
+.controls button {
+  margin-top: 15px;
+  font-size: 1.5em;
+  padding: 15px 30px;
+}
+
+.controls .stats {
+  margin-top: 25px;
+  font-size: 1.5em;
+}
+
+.controls .stats p {
+  margin: 5px 0;
+}
