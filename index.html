@@ -13,7 +13,13 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-       
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+            </ul>
+        </div>
     </nav>
     <div class="container mt-5">
         <div class="text-center mb-4">
@@ -21,35 +27,35 @@
         </div>
         <div class="game-container">
             <div class="controls mb-4 p-3 bg-success text-white rounded">
-                <div class="form-group">
-                    <label for="difficulty">Difficulty:</label>
-                    <div id="difficulty" class="d-flex justify-content-center">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="difficulty" id="easy" value="6" checked>
-                            <label class="form-check-label" for="easy">Easy</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="difficulty" id="medium" value="12">
-                            <label class="form-check-label" for="medium">Medium</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="difficulty" id="hard" value="24">
-                            <label class="form-check-label" for="hard">Hard</label>
+                <div id="difficulty-selection">
+                    <div class="form-group">
+                        <label for="difficulty">Difficulty:</label>
+                        <div id="difficulty" class="d-flex justify-content-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="difficulty" id="easy" value="6" checked>
+                                <label class="form-check-label" for="easy">Easy</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="difficulty" id="medium" value="12">
+                                <label class="form-check-label" for="medium">Medium</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="difficulty" id="hard" value="24">
+                                <label class="form-check-label" for="hard">Hard</label>
+                            </div>
                         </div>
                     </div>
+                    <button class="btn btn-primary mt-3" onclick="startGame()">Start Game</button>
                 </div>
-                <button class="btn btn-primary mt-3" onclick="startGame()">Start Game</button>
-                <div class="mt-3">
+                <div id="game-stats" class="mt-3" style="display: none;">
                     <p class="mb-1">Moves: <span id="moves">0</span></p>
                     <p>Time: <span id="timer">0</span> sec</p>
+                    <button class="btn btn-danger" onclick="stopGame()">Stop Game</button>
                 </div>
             </div>
             <div id="game-board" class="grid"></div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

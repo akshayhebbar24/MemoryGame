@@ -33,6 +33,8 @@ body {
   border-radius: 10px;
   transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transform-style: preserve-3d;
 }
 
 .card:hover {
@@ -42,8 +44,37 @@ body {
 }
 
 .card.flipped {
-  background-color: #4CAF50;
-  color: white;
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.card-front {
+  background-color: #f4c531;
+  font-size: 2em;
+  font-weight: 600;
+  transform: rotateY(0deg);
+}
+
+.card-back {
+  background-color: #fff;
+  transform: rotateY(180deg);
+}
+
+.card-back img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 10px;
 }
 
 .controls {
