@@ -1,4 +1,5 @@
 let moves = 0, timer, timeElapsed = 0, flippedCards = [], matchedCards = [], difficulty;
+let gameStarted = false;
 
 const items = [
   { name: "bee", image: "bee.png" },
@@ -15,6 +16,14 @@ const items = [
   { name: "toucan", image: "toucan.png" },
 ];
 
+function toggleGame() {
+  if (gameStarted) {
+    stopGame();
+  } else {
+    startGame();
+  }
+}
+
 function startGame() {
   clearInterval(timer);
   moves = 0;
@@ -24,36 +33,35 @@ function startGame() {
   document.getElementById("moves").innerText = moves;
   document.getElementById("timer").innerText = timeElapsed;
   difficulty = parseInt(document.querySelector('input[name="difficulty"]:checked').value);
+  document.getElementById("difficulty-options").style.display = "none";
+  document.getElementById("start-stop-button").innerText = "Stop Game";
   setupBoard(difficulty);
-
-  // Hide difficulty selection and show game stats
-  document.getElementById("difficulty-selection").style.display = "none";
-  document.getElementById("game-stats").style.display = "block";
-
   timer = setInterval(() => {
     timeElapsed++;
     document.getElementById("timer").innerText = timeElapsed;
   }, 1000);
+  gameStarted = true;
 }
 
 function stopGame() {
   clearInterval(timer);
-  alert(`Game stopped! Time: ${timeElapsed} seconds, Moves: ${moves}`);
-  resetGame();
+  document.getElementById("difficulty-options").style.display = "block";
+  document.getElementById("start-stop-button").innerText = "Start Game";
+  document.getElementById("game-board").innerHTML = "";
+  gameStarted = false;
+  showModal(`Game stopped! Time: ${timeElapsed} seconds, Moves: ${moves}`);
 }
 
-function resetGame() {
-  clearInterval(timer);
-  document.getElementById("difficulty-selection").style.display = "block";
-  document.getElementById("game-stats").style.display = "none";
-  document.getElementById("game-board").innerHTML = "";
+function showModal(message) {
+  document.getElementById("gameModalMessage").innerText = message;
+  $('#gameModal').modal('show');
 }
 
 function setupBoard(numPairs) {
   const gameBoard = document.getElementById("game-board");
   gameBoard.innerHTML = "";
   const gridSize = Math.sqrt(numPairs * 2);
-  gameBoard.style.gridTemplateColumns = `repeat(${gridSize}, 100px)`;
+  gameBoard.style.gridTemplateColumns = `repeat(${gridSize}, 120px)`;
   const selectedItems = items.slice(0, numPairs);
   const deck = [...selectedItems, ...selectedItems].sort(() => Math.random() - 0.5);
 
@@ -88,7 +96,7 @@ function checkMatch() {
     flippedCards = [];
     if (matchedCards.length === difficulty * 2) {
       clearInterval(timer);
-      alert(`You won! Time: ${timeElapsed} seconds, Moves: ${moves}`);
+      showModal(`You won! Time: ${timeElapsed} seconds, Moves: ${moves}`);
       resetGame();
     }
   } else {
@@ -98,4 +106,12 @@ function checkMatch() {
       flippedCards = [];
     }, 1000);
   }
+}
+
+function resetGame() {
+  clearInterval(timer);
+  document.getElementById("difficulty-options").style.display = "block";
+  document.getElementById("start-stop-button").innerText = "Start Game";
+  document.getElementById("game-board").innerHTML = "";
+  gameStarted = false;
 }
